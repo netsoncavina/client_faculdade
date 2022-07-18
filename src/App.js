@@ -9,9 +9,9 @@ import Consulta from "./pages/Consulta";
 function App() {
   return (
     <div className="App">
-      <Link to="/alunos">Alunos</Link> |{" "}
+      {/* <Link to="/alunos">Alunos</Link> |{" "}
       <Link to="/professores">Professores</Link> |{" "}
-      <Link to="/consulta">Consulta</Link>
+      <Link to="/consulta">Consulta</Link> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="alunos" element={<CadastroAlunos />} />
