@@ -1,8 +1,5 @@
 import "./home.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import CadastroAlunos from "./CadastroAlunos";
-import CadastroProfessores from "./CadastroProfessores";
-import Consulta from "./Consulta";
 
 export default function Home() {
   return (
