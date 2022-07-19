@@ -1,4 +1,4 @@
-.container-alunos {
+.container-cadastro {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,14 +15,15 @@
   margin-bottom: 10px;
 }
 .title {
-  margin-right: 50vw;
+  margin-right: 43vw;
   color: white;
 }
 .aluno-icon {
   height: 60px;
-  margin-left: auto;
+  padding-left: 3vw;
 }
 h2 {
+  margin-bottom: 2vh;
   color: white;
   font-size: 20px;
 }

@@ -1,4 +1,4 @@
-import "./alunos.css";
+import "./cadastros.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 export default function CadastroAlunos() {
   function logValue() {
@@ -19,7 +19,7 @@ export default function CadastroAlunos() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="container-alunos">
+      <div className="container-cadastro">
         <div className="header">
           <h1 className="title">Aluno</h1>
           <img className="aluno-icon" src="./images/3.png" />
