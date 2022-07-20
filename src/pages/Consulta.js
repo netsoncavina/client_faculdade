@@ -38,6 +38,26 @@ export default function Consulta() {
             </select>
           </div>
         </div>
+        <div className="columns">
+          <h2 className="column">Nome do Aluno</h2>
+          <h2 className="column">Data de Nascimento</h2>
+          <h2 className="column">RA</h2>
+          <h2 className="column">Unidade</h2>
+          <h2 className="column">Curso</h2>
+        </div>
+        <div className="container-info">
+          <div className="infos">
+            <h3 className="info">Netson Cavina</h3>
+            <h3 className="info">04/01/1998</h3>
+            <h3 className="info">111122223333</h3>
+            <h3 className="info">Fatec Zona Leste</h3>
+            <h3 className="info">DSM</h3>
+          </div>
+          <div className="icons">
+            <img className="edit-delete-icon" src="./images/edit.png"></img>
+            <img className="edit-delete-icon" src="./images/delete.png"></img>
+          </div>
+        </div>
       </div>
     </div>
   );
