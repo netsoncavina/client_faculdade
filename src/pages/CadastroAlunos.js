@@ -1,10 +1,21 @@
 import "./cadastros.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import cursos from "./data/cursos";
+import unidades from "./data/unidades";
 export default function CadastroAlunos() {
   function logValue() {
     let nameValue = document.getElementById("name").value;
     console.log(nameValue);
   }
+
+  const listaCursos = cursos.map((curso) => {
+    return <option value={curso.abreviacao}>{curso.nome}</option>;
+  });
+
+  const listaUnidades = unidades.map((unidade) => {
+    return <option value={unidade}>{unidade}</option>;
+  });
+
   return (
     <div
       className="main"
@@ -46,17 +57,12 @@ export default function CadastroAlunos() {
 
             <label for="unidade">Unidade</label>
             <select id="unidade" name="unidade">
-              <option value="FatecZL">Fatec Zona Leste</option>
-              <option value="FatecTatuape">Fatec Tatuapé</option>
-              <option value="FatecItaquera">Fatec Itaquera</option>
+              {listaUnidades}
             </select>
 
             <label for="curso">Curso</label>
             <select id="curso" name="curso">
-              <option value="DSM">
-                Desenvolvimento de Software Multiplataforma
-              </option>
-              <option value="COMEX">Comércio Exterior</option>
+              {listaCursos}
             </select>
 
             <label for="semestre">Semestre</label>
