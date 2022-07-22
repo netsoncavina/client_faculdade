@@ -1,11 +1,67 @@
 import "./cadastros.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 import cursos from "./data/cursos";
 import unidades from "./data/unidades";
+import { setMaxListeners } from "events";
 export default function CadastroAlunos() {
-  function logValue() {
-    let nameValue = document.getElementById("name").value;
-    console.log(nameValue);
+  const [nome, setNome] = useState();
+  const [dataNascimento, setDataNascimento] = useState();
+  const [curso, setCurso] = useState("DSM");
+  const [ra, setRa] = useState();
+  const [semestreAtual, setSemestreAtual] = useState(1);
+
+  const client = axios.create({ baseURL: "http://localhost:3000/alunos" });
+
+  function handleNome() {
+    let nomeValue = document.getElementById("name").value;
+    setNome(nomeValue);
+  }
+
+  function handleNascimento() {
+    let nascimentoValue = document.getElementById("date").value;
+    setDataNascimento(nascimentoValue);
+  }
+
+  function handleCurso() {
+    let cursoValue = document.getElementById("curso").value;
+    setCurso(cursoValue);
+  }
+
+  function handleRa() {
+    let raValue = document.getElementById("ra").value;
+    setRa(raValue);
+  }
+
+  function handleSemestre() {
+    let semestreValue = document.getElementById("semestre").value;
+    setSemestreAtual(semestreValue);
+  }
+
+  function submitAluno() {
+    try {
+      client.post("", {
+        nome: nome,
+        dataNascimento: dataNascimento,
+        curso: curso,
+        ra: ra,
+        semestreAtual: semestreAtual,
+      });
+    } catch (e) {
+      console.log(e);
+    } finally {
+      clearFields();
+    }
+  }
+
+  function clearFields() {
+    document.getElementById("name").value = "";
+    document.getElementById("date").value = "";
+    document.getElementById("ra").value = "";
+    document.getElementById("curso").value = "";
+    document.getElementById("unidade").value = "";
+    document.getElementById("semestre").value = "";
   }
 
   const listaCursos = cursos.map((curso) => {
@@ -47,13 +103,29 @@ export default function CadastroAlunos() {
               id="name"
               name="name"
               placeholder="Nome do aluno"
+              onChange={handleNome}
+              onBlur={handleNome}
             />
 
             <label for="date">Data de Nascimento</label>
-            <input type="text" id="date" name="date" placeholder="01/01/01" />
+            <input
+              type="text"
+              id="date"
+              name="date"
+              placeholder="01/01/01"
+              onChange={handleNascimento}
+              onBlur={handleNascimento}
+            />
 
             <label for="ra">RA do aluno</label>
-            <input type="text" id="ra" name="ra" placeholder="RA do aluno" />
+            <input
+              type="text"
+              id="ra"
+              name="ra"
+              placeholder="RA do aluno"
+              onChange={handleRa}
+              onBlur={handleRa}
+            />
 
             <label for="unidade">Unidade</label>
             <select id="unidade" name="unidade">
@@ -61,12 +133,22 @@ export default function CadastroAlunos() {
             </select>
 
             <label for="curso">Curso</label>
-            <select id="curso" name="curso">
+            <select
+              id="curso"
+              name="curso"
+              onChange={handleCurso}
+              onBlur={handleCurso}
+            >
               {listaCursos}
             </select>
 
             <label for="semestre">Semestre</label>
-            <select id="semestre" name="semestre">
+            <select
+              id="semestre"
+              name="semestre"
+              onChange={handleSemestre}
+              onBlur={handleSemestre}
+            >
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -75,7 +157,7 @@ export default function CadastroAlunos() {
               <option value="6">6</option>
             </select>
           </form>
-          <button className="button-cadastro" onClick={logValue}>
+          <button className="button-cadastro" onClick={submitAluno}>
             Cadastrar
           </button>
           <Link to="/professores" className="link">
