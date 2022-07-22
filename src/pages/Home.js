@@ -24,7 +24,7 @@ export default function Home() {
 
         <div className="buttons">
           <Link to="/alunos" className="button">
-            Aluno
+            Alunos
           </Link>
           <Link to="/professores" className="button">
             Professores
