@@ -71,6 +71,7 @@ select {
   border-radius: 100px;
   border-width: 0;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .button-cadastro:hover {

@@ -66,9 +66,6 @@ export default function CadastroProfessores() {
     return <option value={curso.abreviacao}>{curso.nome}</option>;
   });
 
-  const listaUnidades = unidades.map((unidade) => {
-    return <option value={unidade}>{unidade}</option>;
-  });
   return (
     <div
       className="main"
