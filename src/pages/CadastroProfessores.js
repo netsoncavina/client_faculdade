@@ -1,10 +1,74 @@
 import "./cadastros.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+import cursos from "./data/cursos";
+import unidades from "./data/unidades";
 export default function CadastroProfessores() {
-  function logValue() {
-    let nameValue = document.getElementById("name").value;
-    console.log(nameValue);
+  const [nome, setNome] = useState();
+  const [cpf, setCpf] = useState();
+  const [email, setEmail] = useState();
+  const [dataNascimento, setDataNascimento] = useState();
+  const [formacao, setFormacao] = useState();
+
+  const client = axios.create({ baseURL: "http://localhost:3000/professores" });
+
+  function handleNome() {
+    let nomeValue = document.getElementById("name").value;
+    setNome(nomeValue);
   }
+
+  function handleCpf() {
+    let cpfValue = document.getElementById("cpf").value;
+    setCpf(cpfValue);
+  }
+
+  function handleEmail() {
+    let emailValue = document.getElementById("email").value;
+    setEmail(emailValue);
+  }
+
+  function handleFormacao() {
+    let formacaoValue = document.getElementById("formacao").value;
+    setFormacao(formacaoValue);
+  }
+
+  function handleNascimento() {
+    let nascimentoValue = document.getElementById("date").value;
+    setDataNascimento(nascimentoValue);
+  }
+
+  function submitProfessor() {
+    try {
+      client.post("", {
+        nome: nome,
+        formacao: formacao,
+        dataNascimento: dataNascimento,
+        email: email,
+        cpf: cpf,
+      });
+    } catch (e) {
+      console.log(e);
+    } finally {
+      clearFields();
+    }
+  }
+
+  function clearFields() {
+    document.getElementById("name").value = "";
+    document.getElementById("date").value = "";
+    document.getElementById("cpf").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("formacao").value = "";
+  }
+
+  const listaCursos = cursos.map((curso) => {
+    return <option value={curso.abreviacao}>{curso.nome}</option>;
+  });
+
+  const listaUnidades = unidades.map((unidade) => {
+    return <option value={unidade}>{unidade}</option>;
+  });
   return (
     <div
       className="main"
@@ -35,28 +99,59 @@ export default function CadastroProfessores() {
               type="text"
               id="name"
               name="name"
-              placeholder="Nome do aluno"
+              placeholder="Nome do professor"
+              onChange={handleNome}
+              onBlur={handleNome}
             />
 
             <label for="cpf">CPF</label>
-            <input type="text" id="cpf" name="cpf" placeholder="CPF" />
+            <input
+              type="text"
+              id="cpf"
+              name="cpf"
+              placeholder="CPF"
+              onChange={handleCpf}
+              onBlur={handleCpf}
+            />
 
-            <label for="unidade">Unidade</label>
-            <select id="unidade" name="unidade">
-              <option value="FatecZL">Fatec Zona Leste</option>
-              <option value="FatecTatuape">Fatec Tatuapé</option>
-              <option value="FatecItaquera">Fatec Itaquera</option>
+            <label for="email">E-mail</label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              placeholder="Email"
+              onChange={handleEmail}
+              onBlur={handleEmail}
+            />
+
+            <label for="date">Data de Nascimento</label>
+            <input
+              type="text"
+              id="date"
+              name="date"
+              placeholder="01/01/01"
+              onChange={handleNascimento}
+              onBlur={handleNascimento}
+            />
+
+            <label for="formacao">Formação</label>
+            <select
+              id="formacao"
+              name="formacao"
+              onChange={handleFormacao}
+              onBlur={handleFormacao}
+            >
+              <option value={"tecnologo"}>Tecnólogo(a)</option>
+              <option value={"mestre"}>Mestre(a)</option>
+              <option value={"doutor"}>Doutor(a)</option>
             </select>
 
             <label for="curso">Curso</label>
             <select id="curso" name="curso">
-              <option value="DSM">
-                Desenvolvimento de Software Multiplataforma
-              </option>
-              <option value="COMEX">Comércio Exterior</option>
+              {listaCursos}
             </select>
           </form>
-          <button className="button-cadastro" onClick={logValue}>
+          <button className="button-cadastro" onClick={submitProfessor}>
             Cadastrar
           </button>
           <Link to="/alunos" className="link">

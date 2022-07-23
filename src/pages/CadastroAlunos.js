@@ -4,7 +4,6 @@ import { useState } from "react";
 import axios from "axios";
 import cursos from "./data/cursos";
 import unidades from "./data/unidades";
-import { setMaxListeners } from "events";
 export default function CadastroAlunos() {
   const [nome, setNome] = useState();
   const [dataNascimento, setDataNascimento] = useState();
