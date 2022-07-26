@@ -1,6 +1,37 @@
 import "./consulta.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { useState } from "react";
 export default function Consulta() {
+  const [alunoColumns, setAlunoColumns] = useState(
+    <div className="columns">
+      <h2 className="column">Nome do Aluno</h2>
+      <h2 className="column">Data de Nascimento</h2>
+      <h2 className="column">RA</h2>
+      <h2 className="column">Curso</h2>
+      <h2 className="column">Semestre</h2>
+    </div>
+  );
+
+  const [professorColumns, setProfessorColumns] = useState(
+    <div className="columns">
+      <h2 className="column">Nome do Professor</h2>
+      <h2 className="column">Data de Nascimento</h2>
+      <h2 className="column">CPF</h2>
+      <h2 className="column">E-mail</h2>
+      <h2 className="column">Formação</h2>
+    </div>
+  );
+
+  const [columns, setColumns] = useState(alunoColumns);
+
+  function handleClickColumns() {
+    if (columns == alunoColumns) {
+      setColumns(professorColumns);
+    } else {
+      setColumns(alunoColumns);
+    }
+  }
+
   return (
     <div
       className="main"
@@ -20,8 +51,12 @@ export default function Consulta() {
           <h1 className="title">Lista de cadastro</h1>
         </div>
         <div className="selection">
-          <h2 className="selector">Aluno</h2>
-          <h2 className="selector">Professor</h2>
+          <h2 className="selector" onClick={handleClickColumns}>
+            Aluno
+          </h2>
+          <h2 className="selector" onClick={handleClickColumns}>
+            Professor
+          </h2>
         </div>
         <div className="search-filter">
           <div className="searchbar">
@@ -38,13 +73,8 @@ export default function Consulta() {
             </select>
           </div>
         </div>
-        <div className="columns">
-          <h2 className="column">Nome do Aluno</h2>
-          <h2 className="column">Data de Nascimento</h2>
-          <h2 className="column">RA</h2>
-          <h2 className="column">Unidade</h2>
-          <h2 className="column">Curso</h2>
-        </div>
+
+        {columns}
         <div className="container-info">
           <div className="infos">
             <h3 className="info">Netson Cavina</h3>
