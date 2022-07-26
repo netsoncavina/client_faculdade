@@ -1,4 +1,23 @@
 export default function InfoContainer(props) {
+  function handleDelete(fonte, registro) {
+    const requestOptions = {
+      method: "DELETE",
+    };
+    fetch(`http://localhost:3000/${fonte}/${registro}`, requestOptions).then(
+      (response) => {
+        return response.json();
+      }
+    );
+  }
+
+  function handleClick() {
+    if (props.type === "professores") {
+      handleDelete(props.type, props.cpf);
+    } else if (props.type === "alunos") {
+      handleDelete(props.type, props.ra);
+    }
+  }
+
   let data = props.dataNascimento.substring(0, 10);
   data = data.split("-").reverse().join("/");
   if (props.type == "alunos") {
@@ -6,7 +25,6 @@ export default function InfoContainer(props) {
       <div className="container-info">
         <div className="infos">
           <h3 className="info">{props.nome}</h3>
-          {/* <h3 className="info">{props.dataNascimento}</h3> */}
           <h3 className="info">{data}</h3>
           <h3 className="info">{props.ra}</h3>
           <h3 className="info">{props.curso}</h3>
@@ -14,7 +32,11 @@ export default function InfoContainer(props) {
         </div>
         <div className="icons">
           <img className="edit-delete-icon" src="./images/edit.png"></img>
-          <img className="edit-delete-icon" src="./images/delete.png"></img>
+          <img
+            className="edit-delete-icon"
+            src="./images/delete.png"
+            onClick={handleClick}
+          ></img>
         </div>
       </div>
     );
@@ -30,7 +52,11 @@ export default function InfoContainer(props) {
         </div>
         <div className="icons">
           <img className="edit-delete-icon" src="./images/edit.png"></img>
-          <img className="edit-delete-icon" src="./images/delete.png"></img>
+          <img
+            className="edit-delete-icon"
+            src="./images/delete.png"
+            onClick={handleClick}
+          ></img>
         </div>
       </div>
     );
