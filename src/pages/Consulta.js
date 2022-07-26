@@ -1,6 +1,7 @@
 import "./consulta.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useState } from "react";
+import InfoContainer from "./components/InfoContainer";
 export default function Consulta() {
   const [alunoColumns, setAlunoColumns] = useState(
     <div className="columns">
@@ -73,21 +74,15 @@ export default function Consulta() {
             </select>
           </div>
         </div>
-
         {columns}
-        <div className="container-info">
-          <div className="infos">
-            <h3 className="info">Netson Cavina</h3>
-            <h3 className="info">04/01/1998</h3>
-            <h3 className="info">111122223333</h3>
-            <h3 className="info">Fatec Zona Leste</h3>
-            <h3 className="info">DSM</h3>
-          </div>
-          <div className="icons">
-            <img className="edit-delete-icon" src="./images/edit.png"></img>
-            <img className="edit-delete-icon" src="./images/delete.png"></img>
-          </div>
-        </div>
+        <InfoContainer
+          type="Professor"
+          nome="Netson"
+          dataNascimento="04/01/1998"
+          email="netson@gmail.com"
+          cpf="45515044835"
+          formacao="Técnólogo"
+        />
       </div>
     </div>
   );
