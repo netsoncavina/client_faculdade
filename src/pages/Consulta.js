@@ -1,6 +1,5 @@
 import "./consulta.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import InfoContainer from "./components/InfoContainer";
 export default function Consulta() {
   const [alunoColumns, setAlunoColumns] = useState(
@@ -22,16 +21,48 @@ export default function Consulta() {
       <h2 className="column">Formação</h2>
     </div>
   );
+  const [fonte, setFonte] = useState("alunos");
+  const getDados = async () => {
+    const response = await fetch(`http://localhost:3000/${fonte}`);
+    const data = await response.json();
+    setDados(data);
+    return data;
+  };
+  const [dados, setDados] = useState([]);
 
   const [columns, setColumns] = useState(alunoColumns);
+
+  useEffect(() => {
+    getDados();
+  });
 
   function handleClickColumns() {
     if (columns == alunoColumns) {
       setColumns(professorColumns);
+      setFonte("professores");
+      getDados();
     } else {
       setColumns(alunoColumns);
+      setFonte("alunos");
+      getDados();
     }
   }
+
+  const rows = dados.map((cadastro) => {
+    return (
+      <InfoContainer
+        type={fonte}
+        nome={cadastro.nome}
+        dataNascimento={cadastro.dataNascimento}
+        ra={cadastro.ra}
+        curso={cadastro.curso}
+        semestre={cadastro.semestreAtual}
+        cpf={cadastro.cpf}
+        email={cadastro.email}
+        formacao={cadastro.formacao}
+      />
+    );
+  });
 
   return (
     <div
@@ -75,14 +106,16 @@ export default function Consulta() {
           </div>
         </div>
         {columns}
-        <InfoContainer
+        {/* <InfoContainer
           type="Professor"
           nome="Netson"
           dataNascimento="04/01/1998"
           email="netson@gmail.com"
           cpf="45515044835"
           formacao="Técnólogo"
-        />
+        /> */}
+        {/* {console.log(dados)} */}
+        {rows}
       </div>
     </div>
   );
