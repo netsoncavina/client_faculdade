@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PopUpCadastro from "./PopUpCadastro";
+import PopUp from "./PopUp";
 import PopUpCadastroAlunos from "./PopUpCadastroAlunos";
 export default function InfoContainer(props) {
   const [showPopUp, setShowPopUp] = useState(false);
@@ -46,11 +46,11 @@ export default function InfoContainer(props) {
             src="./images/delete.png"
             onClick={handleClick}
           ></img>
-          <PopUpCadastro trigger={showPopUp} setTrigger={setShowPopUp}>
+          <PopUp trigger={showPopUp} setTrigger={setShowPopUp}>
             {props.type === "alunos" ? (
               <PopUpCadastroAlunos setTrigger={setShowPopUp} />
             ) : null}
-          </PopUpCadastro>
+          </PopUp>
         </div>
       </div>
     );
