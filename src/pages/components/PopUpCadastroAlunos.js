@@ -38,9 +38,9 @@ export default function CadastroAlunos(props) {
     setSemestreAtual(semestreValue);
   }
 
-  function submitAluno() {
+  function updateAluno() {
     try {
-      client.post("", {
+      client.patch(`/${props.ra}`, {
         nome: nome,
         dataNascimento: dataNascimento,
         curso: curso,
@@ -50,17 +50,8 @@ export default function CadastroAlunos(props) {
     } catch (e) {
       console.log(e);
     } finally {
-      clearFields();
+      props.setTrigger(false);
     }
-  }
-
-  function clearFields() {
-    document.getElementById("name").value = "";
-    document.getElementById("date").value = "";
-    document.getElementById("ra").value = "";
-    document.getElementById("curso").value = "";
-    document.getElementById("unidade").value = "";
-    document.getElementById("semestre").value = "";
   }
 
   const listaCursos = cursos.map((curso) => {
@@ -101,7 +92,7 @@ export default function CadastroAlunos(props) {
               id="date"
               name="date"
               placeholder="01/01/01"
-              value={props.dataNascimento}
+              // value={props.dataNascimento}
               onChange={handleNascimento}
               onBlur={handleNascimento}
             />
@@ -160,7 +151,7 @@ export default function CadastroAlunos(props) {
           <div className="buttons-popUp">
             <button
               className="button-cadastro button-cadastro-popUp"
-              onClick={submitAluno}
+              onClick={updateAluno}
             >
               Atualizar
             </button>
