@@ -1,4 +1,9 @@
+import { useState } from "react";
+import PopUpCadastro from "./PopUpCadastro";
+import PopUpCadastroAlunos from "./PopUpCadastroAlunos";
 export default function InfoContainer(props) {
+  const [showPopUp, setShowPopUp] = useState(false);
+
   function handleDelete(fonte, registro) {
     const requestOptions = {
       method: "DELETE",
@@ -31,12 +36,21 @@ export default function InfoContainer(props) {
           <h3 className="info">{props.semestre}</h3>
         </div>
         <div className="icons">
-          <img className="edit-delete-icon" src="./images/edit.png"></img>
+          <img
+            className="edit-delete-icon"
+            src="./images/edit.png"
+            onClick={() => setShowPopUp(true)}
+          ></img>
           <img
             className="edit-delete-icon"
             src="./images/delete.png"
             onClick={handleClick}
           ></img>
+          <PopUpCadastro trigger={showPopUp} setTrigger={setShowPopUp}>
+            {props.type === "alunos" ? (
+              <PopUpCadastroAlunos setTrigger={setShowPopUp} />
+            ) : null}
+          </PopUpCadastro>
         </div>
       </div>
     );
