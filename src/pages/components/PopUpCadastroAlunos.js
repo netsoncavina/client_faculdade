@@ -90,6 +90,7 @@ export default function CadastroAlunos(props) {
               id="name"
               name="name"
               placeholder="Nome do aluno"
+              value={props.nome}
               onChange={handleNome}
               onBlur={handleNome}
             />
@@ -100,6 +101,7 @@ export default function CadastroAlunos(props) {
               id="date"
               name="date"
               placeholder="01/01/01"
+              value={props.dataNascimento}
               onChange={handleNascimento}
               onBlur={handleNascimento}
             />
@@ -110,12 +112,17 @@ export default function CadastroAlunos(props) {
               id="ra"
               name="ra"
               placeholder="RA do aluno"
+              value={props.ra}
               onChange={handleRa}
               onBlur={handleRa}
             />
 
             <label for="unidade">Unidade</label>
             <select id="unidade" name="unidade">
+              <option value="" selected disabled hidden>
+                Selecione a unidade
+              </option>
+
               {listaUnidades}
             </select>
 
@@ -126,6 +133,9 @@ export default function CadastroAlunos(props) {
               onChange={handleCurso}
               onBlur={handleCurso}
             >
+              <option value="" selected disabled hidden>
+                Selecione o curso
+              </option>
               {listaCursos}
             </select>
 
@@ -136,6 +146,9 @@ export default function CadastroAlunos(props) {
               onChange={handleSemestre}
               onBlur={handleSemestre}
             >
+              <option value="" selected disabled hidden>
+                Selecione o semestre
+              </option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
