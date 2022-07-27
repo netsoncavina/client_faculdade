@@ -96,7 +96,7 @@ export default function CadastroAlunos() {
         </h2>
         <div className="formulario">
           <form action="/action_page.php">
-            <label for="name">Nome do Aluno</label>
+            <label htmlFor="name">Nome do Aluno</label>
             <input
               type="text"
               id="name"
@@ -106,7 +106,7 @@ export default function CadastroAlunos() {
               onBlur={handleNome}
             />
 
-            <label for="date">Data de Nascimento</label>
+            <label htmlFor="date">Data de Nascimento</label>
             <input
               type="text"
               id="date"
@@ -116,7 +116,7 @@ export default function CadastroAlunos() {
               onBlur={handleNascimento}
             />
 
-            <label for="ra">RA do aluno</label>
+            <label htmlFor="ra">RA do aluno</label>
             <input
               type="text"
               id="ra"
@@ -126,12 +126,12 @@ export default function CadastroAlunos() {
               onBlur={handleRa}
             />
 
-            <label for="unidade">Unidade</label>
+            <label htmlFor="unidade">Unidade</label>
             <select id="unidade" name="unidade">
               {listaUnidades}
             </select>
 
-            <label for="curso">Curso</label>
+            <label htmlFor="curso">Curso</label>
             <select
               id="curso"
               name="curso"
@@ -141,7 +141,7 @@ export default function CadastroAlunos() {
               {listaCursos}
             </select>
 
-            <label for="semestre">Semestre</label>
+            <label htmlFor="semestre">Semestre</label>
             <select
               id="semestre"
               name="semestre"

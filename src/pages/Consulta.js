@@ -48,9 +48,10 @@ export default function Consulta() {
     }
   }
 
-  const rows = dados.map((cadastro) => {
+  const rows = dados.map((cadastro, index) => {
     return (
       <InfoContainer
+        key={index}
         type={fonte}
         nome={cadastro.nome}
         dataNascimento={cadastro.dataNascimento}
@@ -106,15 +107,6 @@ export default function Consulta() {
           </div>
         </div>
         {columns}
-        {/* <InfoContainer
-          type="Professor"
-          nome="Netson"
-          dataNascimento="04/01/1998"
-          email="netson@gmail.com"
-          cpf="45515044835"
-          formacao="Técnólogo"
-        /> */}
-        {/* {console.log(dados)} */}
         {rows}
       </div>
     </div>

@@ -23,10 +23,8 @@ export default function InfoContainer(props) {
     }
   }
 
-  let data =
-    props.dataNascimento.length > 10
-      ? props.dataNascimento.substring(0, 10)
-      : props.dataNascimento;
+  let data = props.dataNascimento.substring(0, 10);
+
   data = data.split("-").reverse().join("/");
   if (props.type == "alunos") {
     return (
@@ -56,6 +54,7 @@ export default function InfoContainer(props) {
                 nome={props.nome}
                 dataNascimento={data}
                 ra={props.ra}
+                semestre={props.semestre}
               />
             ) : null}
           </PopUp>

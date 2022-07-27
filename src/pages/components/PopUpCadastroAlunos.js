@@ -9,7 +9,7 @@ export default function CadastroAlunos(props) {
   const [dataNascimento, setDataNascimento] = useState();
   const [curso, setCurso] = useState("DSM");
   const [ra, setRa] = useState();
-  const [semestreAtual, setSemestreAtual] = useState(1);
+  const [semestreAtual, setSemestreAtual] = useState(props.semestre);
 
   const client = axios.create({ baseURL: "http://localhost:3000/alunos" });
 
@@ -54,12 +54,20 @@ export default function CadastroAlunos(props) {
     }
   }
 
-  const listaCursos = cursos.map((curso) => {
-    return <option value={curso.abreviacao}>{curso.nome}</option>;
+  const listaCursos = cursos.map((curso, index) => {
+    return (
+      <option key={index} value={curso.abreviacao}>
+        {curso.nome}
+      </option>
+    );
   });
 
-  const listaUnidades = unidades.map((unidade) => {
-    return <option value={unidade}>{unidade}</option>;
+  const listaUnidades = unidades.map((unidade, index) => {
+    return (
+      <option key={index} value={unidade}>
+        {unidade}
+      </option>
+    );
   });
 
   return (
@@ -75,29 +83,29 @@ export default function CadastroAlunos(props) {
         </h2>
         <div className="formulario-popUp">
           <form action="/action_page.php">
-            <label for="name">Nome do Aluno</label>
+            <label htmlFor="name">Nome do Aluno</label>
             <input
               type="text"
               id="name"
               name="name"
               placeholder="Nome do aluno"
-              value={props.nome}
+              defaultValue={props.nome}
               onChange={handleNome}
               onBlur={handleNome}
             />
 
-            <label for="date">Data de Nascimento</label>
+            <label htmlFor="date">Data de Nascimento</label>
             <input
               type="text"
               id="date"
               name="date"
               placeholder="01/01/01"
-              // value={props.dataNascimento}
+              defaultValue={props.dataNascimento}
               onChange={handleNascimento}
               onBlur={handleNascimento}
             />
 
-            <label for="ra">RA do aluno</label>
+            <label htmlFor="ra">RA do aluno</label>
             <input
               type="text"
               id="ra"
@@ -108,38 +116,32 @@ export default function CadastroAlunos(props) {
               onBlur={handleRa}
             />
 
-            <label for="unidade">Unidade</label>
+            <label htmlFor="unidade">Unidade</label>
             <select id="unidade" name="unidade">
-              <option value="" selected disabled hidden>
+              {/* <option value="" selected disabled hidden>
                 Selecione a unidade
-              </option>
+              </option> */}
 
               {listaUnidades}
             </select>
 
-            <label for="curso">Curso</label>
+            <label htmlFor="curso">Curso</label>
             <select
               id="curso"
               name="curso"
               onChange={handleCurso}
               onBlur={handleCurso}
             >
-              <option value="" selected disabled hidden>
-                Selecione o curso
-              </option>
               {listaCursos}
             </select>
 
-            <label for="semestre">Semestre</label>
+            <label htmlFor="semestre">Semestre</label>
             <select
               id="semestre"
               name="semestre"
               onChange={handleSemestre}
               onBlur={handleSemestre}
             >
-              <option value="" selected disabled hidden>
-                Selecione o semestre
-              </option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
