@@ -1,5 +1,4 @@
 import "../cadastros.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import cursos from "../data/cursos";
@@ -9,7 +8,7 @@ export default function CadastroAlunos(props) {
   const [dataNascimento, setDataNascimento] = useState();
   const [curso, setCurso] = useState("DSM");
   const [ra, setRa] = useState();
-  const [semestreAtual, setSemestreAtual] = useState(props.semestre);
+  const [semestreAtual, setSemestreAtual] = useState(3);
 
   const client = axios.create({ baseURL: "http://localhost:3000/alunos" });
 
@@ -34,7 +33,7 @@ export default function CadastroAlunos(props) {
   }
 
   function handleSemestre() {
-    let semestreValue = document.getElementById("semestre").value;
+    let semestreValue = document.getElementById("semestreAtual").value;
     setSemestreAtual(semestreValue);
   }
 
@@ -66,6 +65,14 @@ export default function CadastroAlunos(props) {
     return (
       <option key={index} value={unidade}>
         {unidade}
+      </option>
+    );
+  });
+
+  const listaSemestres = [1, 2, 3, 4, 5, 6].map((semestre, index) => {
+    return (
+      <option key={index} value={semestre}>
+        {semestre}
       </option>
     );
   });
@@ -137,17 +144,12 @@ export default function CadastroAlunos(props) {
 
             <label htmlFor="semestre">Semestre</label>
             <select
-              id="semestre"
+              id="semestreAtual"
               name="semestre"
               onChange={handleSemestre}
               onBlur={handleSemestre}
             >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
+              {listaSemestres}
             </select>
           </form>
           <div className="buttons-popUp">
