@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PopUp from "./PopUp";
 import PopUpCadastroAlunos from "./PopUpCadastroAlunos";
+import PopUpCadastroProfessores from "./PopUpCadastroProfessores";
 export default function InfoContainer(props) {
   const [showPopUp, setShowPopUp] = useState(false);
 
@@ -72,12 +73,28 @@ export default function InfoContainer(props) {
           <h3 className="info">{props.formacao}</h3>
         </div>
         <div className="icons">
-          <img className="edit-delete-icon" src="./images/edit.png"></img>
+          <img
+            className="edit-delete-icon"
+            src="./images/edit.png"
+            onClick={() => setShowPopUp(true)}
+          ></img>
           <img
             className="edit-delete-icon"
             src="./images/delete.png"
             onClick={handleClick}
           ></img>
+          <PopUp trigger={showPopUp} setTrigger={setShowPopUp}>
+            {props.type === "professores" ? (
+              <PopUpCadastroProfessores
+                setTrigger={setShowPopUp}
+                nome={props.nome}
+                dataNascimento={data}
+                cpf={props.cpf}
+                email={props.email}
+                formacao={props.formacao}
+              />
+            ) : null}
+          </PopUp>
         </div>
       </div>
     );
