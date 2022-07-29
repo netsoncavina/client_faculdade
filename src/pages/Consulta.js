@@ -21,15 +21,20 @@ export default function Consulta() {
       <h2 className="column">Formação</h2>
     </div>
   );
+  const [columns, setColumns] = useState(alunoColumns);
+
   const [fonte, setFonte] = useState("alunos");
   const getDados = async (nome) => {
     if (nome !== "" && nome !== undefined && nome !== null && nome !== " ") {
       setPesquisa(nome);
-      getAluno(nome);
+      if (fonte === "alunos") {
+        getAluno(nome);
+      } else {
+        getProfessor(nome);
+      }
     } else {
       const response = await fetch(`http://localhost:3000/${fonte}`);
       const data = await response.json();
-      // setPesquisa(null);
       setDados(data);
       return data;
     }
@@ -42,9 +47,17 @@ export default function Consulta() {
     return data;
   }
 
+  async function getProfessor(nome) {
+    const response = await fetch(
+      `http://localhost:3000/professores/professor/${nome}`
+    );
+    const data = await response.json();
+    setDados(data);
+    return data;
+  }
+
   const [dados, setDados] = useState([]);
 
-  const [columns, setColumns] = useState(alunoColumns);
   const [pesquisa, setPesquisa] = useState(null);
 
   useEffect(() => {
