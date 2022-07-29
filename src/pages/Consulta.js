@@ -37,14 +37,21 @@ export default function Consulta() {
   });
 
   function handleClickColumns() {
+    let alunoSelector = document.getElementById("aluno-selector");
+    let professorSelector = document.getElementById("professor-selector");
+
     if (columns == alunoColumns) {
       setColumns(professorColumns);
       setFonte("professores");
       getDados();
+      professorSelector.classList.add("selected");
+      alunoSelector.classList.remove("selected");
     } else {
       setColumns(alunoColumns);
       setFonte("alunos");
       getDados();
+      professorSelector.classList.remove("selected");
+      alunoSelector.classList.add("selected");
     }
   }
 
@@ -84,10 +91,18 @@ export default function Consulta() {
           <h1 className="title">Lista de cadastro</h1>
         </div>
         <div className="selection">
-          <h2 className="selector" onClick={handleClickColumns}>
+          <h2
+            className="selector selected"
+            id="aluno-selector"
+            onClick={handleClickColumns}
+          >
             Aluno
           </h2>
-          <h2 className="selector" onClick={handleClickColumns}>
+          <h2
+            className="selector"
+            id="professor-selector"
+            onClick={handleClickColumns}
+          >
             Professor
           </h2>
         </div>

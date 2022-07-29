@@ -100,6 +100,11 @@ input[type="search"]:focus {
   margin-right: 4vw;
 }
 
+.selected {
+  color: rgb(76, 158, 184);
+  /* font-weight: 500; */
+}
+
 .columns {
   /* display: flex;
   flex-direction: row; */
