@@ -22,18 +22,33 @@ export default function Consulta() {
     </div>
   );
   const [fonte, setFonte] = useState("alunos");
-  const getDados = async () => {
-    const response = await fetch(`http://localhost:3000/${fonte}`);
+  const getDados = async (nome) => {
+    if (nome !== "" && nome !== undefined && nome !== null && nome !== " ") {
+      setPesquisa(nome);
+      getAluno(nome);
+    } else {
+      const response = await fetch(`http://localhost:3000/${fonte}`);
+      const data = await response.json();
+      // setPesquisa(null);
+      setDados(data);
+      return data;
+    }
+  };
+
+  async function getAluno(nome) {
+    const response = await fetch(`http://localhost:3000/alunos/aluno/${nome}`);
     const data = await response.json();
     setDados(data);
     return data;
-  };
+  }
+
   const [dados, setDados] = useState([]);
 
   const [columns, setColumns] = useState(alunoColumns);
+  const [pesquisa, setPesquisa] = useState(null);
 
   useEffect(() => {
-    getDados();
+    getDados(pesquisa);
   });
 
   function handleClickColumns() {
@@ -53,6 +68,17 @@ export default function Consulta() {
       professorSelector.classList.remove("selected");
       alunoSelector.classList.add("selected");
     }
+  }
+
+  function handleSearch() {
+    let searchValue = document.getElementById("search-input").value;
+    if (searchValue == "" || searchValue == null || searchValue == undefined) {
+      setPesquisa(null);
+      getDados();
+    } else {
+      getDados(searchValue);
+    }
+    console.log(searchValue);
   }
 
   const rows = dados.map((cadastro, index) => {
@@ -92,7 +118,7 @@ export default function Consulta() {
         </div>
         <div className="selection">
           <h2
-            className="selector selected"
+            className="selector "
             id="aluno-selector"
             onClick={handleClickColumns}
           >
@@ -108,9 +134,11 @@ export default function Consulta() {
         </div>
         <div className="search-filter">
           <div className="searchbar">
-            <input type="search" placeholder="Pesquisar" />
+            <input type="search" placeholder="Pesquisar" id="search-input" />
             <div className="search-button">
-              <button type="submit">Search</button>
+              <button type="submit" onClick={handleSearch}>
+                Search
+              </button>
             </div>
           </div>
           <div className="filter">
