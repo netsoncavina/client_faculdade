@@ -67,19 +67,28 @@ export default function Consulta() {
   function handleClickColumns() {
     let alunoSelector = document.getElementById("aluno-selector");
     let professorSelector = document.getElementById("professor-selector");
+    let searchBar = document.getElementById("search-input");
 
     if (columns == alunoColumns) {
       setColumns(professorColumns);
       setFonte("professores");
+      setPesquisa(null);
       getDados();
       professorSelector.classList.add("selected");
       alunoSelector.classList.remove("selected");
+      searchBar.value = "";
+      searchBar.placeholder = "Pesquisar professor";
     } else {
       setColumns(alunoColumns);
       setFonte("alunos");
+      setPesquisa(null);
+
       getDados();
       professorSelector.classList.remove("selected");
       alunoSelector.classList.add("selected");
+      searchBar.value = "";
+
+      searchBar.placeholder = "Pesquisar aluno";
     }
   }
 
