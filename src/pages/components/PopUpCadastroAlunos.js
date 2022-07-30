@@ -1,6 +1,7 @@
 import "../cadastros.css";
 import { useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 import cursos from "../data/cursos";
 import unidades from "../data/unidades";
 export default function CadastroAlunos(props) {
@@ -51,6 +52,22 @@ export default function CadastroAlunos(props) {
     } finally {
       props.setTrigger(false);
     }
+  }
+
+  function showAlert() {
+    Swal.fire({
+      title: "Confirmar edição?",
+      showDenyButton: true,
+      confirmButtonText: "Salvar",
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        updateAluno();
+        Swal.fire("Aluno atualizado!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Atualização cancelada", "", "info");
+      }
+    });
   }
 
   const listaCursos = cursos.map((curso, index) => {
@@ -155,7 +172,7 @@ export default function CadastroAlunos(props) {
           <div className="buttons-popUp">
             <button
               className="button-cadastro button-cadastro-popUp"
-              onClick={updateAluno}
+              onClick={showAlert}
             >
               Atualizar
             </button>
