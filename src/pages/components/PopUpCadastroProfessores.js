@@ -63,7 +63,7 @@ export default function PopUpCadastroProfessores(props) {
     }).then((result) => {
       if (result.isConfirmed) {
         updateProfessor();
-        Swal.fire("Aluno atualizado!", "", "success");
+        Swal.fire("Professor atualizado!", "", "success");
       } else if (result.isDenied) {
         Swal.fire("Atualização cancelada", "", "info");
       }
