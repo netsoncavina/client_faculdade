@@ -5,10 +5,11 @@ import Home from "./pages/Home";
 import CadastroAlunos from "./pages/CadastroAlunos";
 import CadastroProfessores from "./pages/CadastroProfessores";
 import Consulta from "./pages/Consulta";
-
+import MenuHamburguer from "./pages/components/MenuHamburguer";
 function App() {
   return (
     <div className="App">
+      <MenuHamburguer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="alunos" element={<CadastroAlunos />} />

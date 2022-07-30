@@ -1,0 +1,16 @@
+.links {
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  /* background-color: rgb(27, 48, 97); */
+  margin-bottom: 10px;
+  padding: 20px 50px;
+  width: 27vw;
+  color: white;
+  border-radius: 10px;
+  border-width: 0;
+  text-decoration: none;
+}
+
+.links:hover {
+  color: #58b8cd;
+}
