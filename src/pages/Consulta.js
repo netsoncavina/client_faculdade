@@ -140,7 +140,7 @@ export default function Consulta() {
         </div>
         <div className="selection">
           <h2
-            className="selector "
+            className="selector selected "
             id="aluno-selector"
             onClick={handleClickColumns}
           >

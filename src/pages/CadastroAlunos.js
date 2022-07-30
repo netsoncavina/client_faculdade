@@ -2,6 +2,7 @@ import "./cadastros.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 import cursos from "./data/cursos";
 import unidades from "./data/unidades";
 export default function CadastroAlunos() {
@@ -61,6 +62,22 @@ export default function CadastroAlunos() {
     document.getElementById("curso").value = "";
     document.getElementById("unidade").value = "";
     document.getElementById("semestre").value = "";
+  }
+
+  function showAlert() {
+    Swal.fire({
+      title: "Confirmar cadastro?",
+      showDenyButton: true,
+      confirmButtonText: "Salvar",
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        submitAluno();
+        Swal.fire("Aluno cadastrado!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Cadastro cancelado", "", "info");
+      }
+    });
   }
 
   const listaCursos = cursos.map((curso) => {
@@ -156,7 +173,7 @@ export default function CadastroAlunos() {
               <option value="6">6</option>
             </select>
           </form>
-          <button className="button-cadastro" onClick={submitAluno}>
+          <button className="button-cadastro" onClick={showAlert}>
             Cadastrar
           </button>
           <Link to="/professores" className="link">
