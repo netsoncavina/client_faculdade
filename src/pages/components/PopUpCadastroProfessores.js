@@ -1,6 +1,7 @@
 import "../cadastros.css";
 import { useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 import cursos from "../data/cursos";
 
 export default function PopUpCadastroProfessores(props) {
@@ -51,6 +52,22 @@ export default function PopUpCadastroProfessores(props) {
     } finally {
       props.setTrigger(false);
     }
+  }
+
+  function showAlert() {
+    Swal.fire({
+      title: "Confirmar edição?",
+      showDenyButton: true,
+      confirmButtonText: "Salvar",
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        updateProfessor();
+        Swal.fire("Aluno atualizado!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Atualização cancelada", "", "info");
+      }
+    });
   }
 
   function clearFields() {
@@ -138,7 +155,7 @@ export default function PopUpCadastroProfessores(props) {
           <div className="buttons-popUp">
             <button
               className="button-cadastro button-cadastro-popUp"
-              onClick={updateProfessor}
+              onClick={showAlert}
             >
               Atualizar
             </button>
