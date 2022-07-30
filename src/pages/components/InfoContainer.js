@@ -30,7 +30,7 @@ export default function InfoContainer(props) {
     Swal.fire({
       title: "Excluir cadastro?",
       showDenyButton: true,
-      confirmButtonText: "Salvar",
+      confirmButtonText: "Exluir",
       denyButtonText: `Cancelar`,
     }).then((result) => {
       if (result.isConfirmed) {
@@ -120,7 +120,6 @@ export default function InfoContainer(props) {
               />
             ) : null}
           </PopUp>
-          <ReactTooltip place="top" type="dark" effect="float" />
           <ReactTooltip place="top" type="dark" effect="float" />
         </div>
       </div>
