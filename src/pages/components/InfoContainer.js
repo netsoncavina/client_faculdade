@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
+import ReactTooltip from "react-tooltip";
 import PopUp from "./PopUp";
 import PopUpCadastroAlunos from "./PopUpCadastroAlunos";
 import PopUpCadastroProfessores from "./PopUpCadastroProfessores";
@@ -48,7 +49,9 @@ export default function InfoContainer(props) {
     return (
       <div className="container-info">
         <div className="infos">
-          <h3 className="info">{props.nome}</h3>
+          <h3 data-tip={props.nome} className="info">
+            {props.nome}
+          </h3>
           <h3 className="info">{data}</h3>
           <h3 className="info">{props.ra}</h3>
           <h3 className="info">{props.curso}</h3>
@@ -76,6 +79,7 @@ export default function InfoContainer(props) {
               />
             ) : null}
           </PopUp>
+          <ReactTooltip place="top" type="dark" effect="float" />
         </div>
       </div>
     );
@@ -83,10 +87,14 @@ export default function InfoContainer(props) {
     return (
       <div className="container-info">
         <div className="infos">
-          <h3 className="info">{props.nome}</h3>
+          <h3 data-tip={props.nome} className="info">
+            {props.nome}
+          </h3>
           <h3 className="info">{data}</h3>
           <h3 className="info">{props.cpf}</h3>
-          <h3 className="info">{props.email}</h3>
+          <h3 data-tip={props.email} className="info">
+            {props.email}
+          </h3>
           <h3 className="info">{props.formacao}</h3>
         </div>
         <div className="icons">
@@ -112,6 +120,8 @@ export default function InfoContainer(props) {
               />
             ) : null}
           </PopUp>
+          <ReactTooltip place="top" type="dark" effect="float" />
+          <ReactTooltip place="top" type="dark" effect="float" />
         </div>
       </div>
     );
