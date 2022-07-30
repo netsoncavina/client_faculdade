@@ -82,3 +82,13 @@ select {
 .link {
   color: white;
 }
+
+.alert {
+  color: red;
+  font-size: 10px;
+  /* padding-bottom: 3px; */
+}
+
+.hidden {
+  display: none;
+}

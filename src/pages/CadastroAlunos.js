@@ -16,11 +16,13 @@ export default function CadastroAlunos() {
 
   function handleNome() {
     let nomeValue = document.getElementById("name").value;
+    let nomeAlert = (document.getElementById("nome").innerHTML = "");
     setNome(nomeValue);
   }
 
   function handleNascimento() {
     let nascimentoValue = document.getElementById("date").value;
+    let nascimentoAlert = (document.getElementById("data").innerHTML = "");
     setDataNascimento(nascimentoValue);
   }
 
@@ -31,6 +33,7 @@ export default function CadastroAlunos() {
 
   function handleRa() {
     let raValue = document.getElementById("ra").value;
+    let raAlert = (document.getElementById("alertRA").innerHtml = "");
     setRa(raValue);
   }
 
@@ -80,6 +83,28 @@ export default function CadastroAlunos() {
     });
   }
 
+  function validaDados() {
+    const nome = document.getElementById("name").value;
+    const dataNascimento = document.getElementById("date").value;
+    const ra = document.getElementById("ra").value;
+    if (nome === "" || dataNascimento === "" || ra === "") {
+      if (nome === "") {
+        document.getElementById("nome").innerHTML = "Insira o nome do aluno";
+      }
+      if (dataNascimento === "") {
+        document.getElementById("data").innerHTML =
+          "Insira a data de nascimento";
+      }
+      if (ra === "") {
+        document.getElementById("alertRA").innerHTML = "Insira o RA do aluno";
+      }
+
+      Swal.fire("Preencha todos os campos", "", "warning");
+    } else {
+      showAlert();
+    }
+  }
+
   const listaCursos = cursos.map((curso) => {
     return <option value={curso.abreviacao}>{curso.nome}</option>;
   });
@@ -122,6 +147,7 @@ export default function CadastroAlunos() {
               onChange={handleNome}
               onBlur={handleNome}
             />
+            <p className="alert" id="nome"></p>
 
             <label htmlFor="date">Data de Nascimento</label>
             <input
@@ -132,6 +158,7 @@ export default function CadastroAlunos() {
               onChange={handleNascimento}
               onBlur={handleNascimento}
             />
+            <p className="alert" id="data"></p>
 
             <label htmlFor="ra">RA do aluno</label>
             <input
@@ -142,6 +169,7 @@ export default function CadastroAlunos() {
               onChange={handleRa}
               onBlur={handleRa}
             />
+            <p className="alert" id="alertRA"></p>
 
             <label htmlFor="unidade">Unidade</label>
             <select id="unidade" name="unidade">
@@ -173,7 +201,7 @@ export default function CadastroAlunos() {
               <option value="6">6</option>
             </select>
           </form>
-          <button className="button-cadastro" onClick={showAlert}>
+          <button className="button-cadastro" onClick={validaDados}>
             Cadastrar
           </button>
           <Link to="/professores" className="link">
