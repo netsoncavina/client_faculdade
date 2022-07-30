@@ -2,6 +2,8 @@ import "./cadastros.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
+
 import cursos from "./data/cursos";
 import unidades from "./data/unidades";
 export default function CadastroProfessores() {
@@ -60,6 +62,22 @@ export default function CadastroProfessores() {
     document.getElementById("cpf").value = "";
     document.getElementById("email").value = "";
     document.getElementById("formacao").value = "";
+  }
+
+  function showAlert() {
+    Swal.fire({
+      title: "Confirmar cadastro?",
+      showDenyButton: true,
+      confirmButtonText: "Salvar",
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        submitProfessor();
+        Swal.fire("Professor cadastrado!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Cadastro cancelado", "", "info");
+      }
+    });
   }
 
   const listaCursos = cursos.map((curso) => {
@@ -138,9 +156,9 @@ export default function CadastroProfessores() {
               onChange={handleFormacao}
               onBlur={handleFormacao}
             >
-              <option value={"tecnologo"}>Tecnólogo(a)</option>
-              <option value={"mestre"}>Mestre(a)</option>
-              <option value={"doutor"}>Doutor(a)</option>
+              <option value={"Tecnólogo(a)"}>Tecnólogo(a)</option>
+              <option value={"Mestre(a)"}>Mestre(a)</option>
+              <option value={"Doutor(a)"}>Doutor(a)</option>
             </select>
 
             <label for="curso">Curso</label>
@@ -148,7 +166,7 @@ export default function CadastroProfessores() {
               {listaCursos}
             </select>
           </form>
-          <button className="button-cadastro" onClick={submitProfessor}>
+          <button className="button-cadastro" onClick={showAlert}>
             Cadastrar
           </button>
           <Link to="/alunos" className="link">
