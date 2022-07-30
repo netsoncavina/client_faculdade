@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Swal from "sweetalert2";
 import PopUp from "./PopUp";
 import PopUpCadastroAlunos from "./PopUpCadastroAlunos";
 import PopUpCadastroProfessores from "./PopUpCadastroProfessores";
@@ -24,6 +25,22 @@ export default function InfoContainer(props) {
     }
   }
 
+  function showAlertExclusao() {
+    Swal.fire({
+      title: "Excluir cadastro?",
+      showDenyButton: true,
+      confirmButtonText: "Salvar",
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleClick();
+        Swal.fire(`Cadastro excluido`, "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Exclusão cancelada", "", "info");
+      }
+    });
+  }
+
   let data = props.dataNascimento.substring(0, 10);
 
   data = data.split("-").reverse().join("/");
@@ -46,7 +63,7 @@ export default function InfoContainer(props) {
           <img
             className="edit-delete-icon"
             src="./images/delete.png"
-            onClick={handleClick}
+            onClick={showAlertExclusao}
           ></img>
           <PopUp trigger={showPopUp} setTrigger={setShowPopUp}>
             {props.type === "alunos" ? (
@@ -81,7 +98,7 @@ export default function InfoContainer(props) {
           <img
             className="edit-delete-icon"
             src="./images/delete.png"
-            onClick={handleClick}
+            onClick={showAlertExclusao}
           ></img>
           <PopUp trigger={showPopUp} setTrigger={setShowPopUp}>
             {props.type === "professores" ? (
