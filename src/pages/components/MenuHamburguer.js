@@ -33,6 +33,8 @@ const styles = {
     background: "rgba(27, 48, 97,0.8)",
     padding: "2.5em 1.5em 0",
     fontSize: "1.15em",
+    overflowX: "hidden",
+    overflowY: "hidden",
   },
   bmMorphShape: {
     fill: "#373a47",
