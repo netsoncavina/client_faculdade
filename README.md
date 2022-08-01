@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+# Client projeto FATEC 
+Front end responsável pela interação do usuário com o projeto FATEC 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Descrição 
+Este projeto é um sistema de cadastro e consultas de alunos e professores.
 
-## Available Scripts
+# Tecnologias utilizadas
+<img src="https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white" /> <img src="https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white" />
+<img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" />
+<img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" />
+<img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" />
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
 
-In the project directory, you can run:
+# Método de desenvolvimento 
+O método de desenvolvimento foi o de Desenvolvimento Orientado a Testes (TDD), que consiste em ciclos de desenvolvimento dos testes e refatoração do código para que os testes sejam bem sucedidos
 
-### `npm start`
+# Imagens
+<img src="https://user-images.githubusercontent.com/1374081/182251881-5cda3097-071d-4558-8576-756c84127d2f.png" width="90%"></img>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<img src="https://user-images.githubusercontent.com/1374081/182251399-34f6cb60-4670-49f1-8ae5-6e13c07ad6f8.png" width="30%"></img> <img src="https://user-images.githubusercontent.com/1374081/182251438-66d14601-4384-41b6-9289-e157f99ef0d3.png" width="30%"></img> <img src="https://user-images.githubusercontent.com/1374081/182251457-21debe4a-870d-4583-90ce-94571a7c8a00.png" width="30%"></img> <img src="https://user-images.githubusercontent.com/1374081/182251513-92d14fe1-53a6-4fa8-8a0d-d8762c42ee0e.png" width="30%"></img> <img src="https://user-images.githubusercontent.com/1374081/182251584-21b7d50d-d887-41a7-aaec-e3feccc4bbcf.png" width="30%"></img> <img src="https://user-images.githubusercontent.com/1374081/182251602-bb6a19e7-dc3c-420a-9c66-e840cc7ad58c.png" width="30%"></img> 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Instalação
+Executando o comando `npm install` na pasta raiz do projeto, todas os modulos necessários serão instalados.
 
-### `npm test`
+# Execução
+Executando o comando `npm start` na pasta raiz do projeto, irá iniciar o react app.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Features 
+- Menu Hamburguer 
+- Alerts desenvolvidos com Sweet Alert 2
+- Barra de pesquisa por nome do(a) aluno(a)/professor(a)
+- Tooltip para melhor exibição dos nomes 
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
